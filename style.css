@@ -595,6 +595,28 @@ button {
   color: var(--color-terracotta);
 }
 
+.product-card__variants {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  background: linear-gradient(135deg, rgba(196, 112, 63, 0.05), rgba(212, 168, 71, 0.05));
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-terracotta);
+}
+
+.product-card__variant {
+  font-size: 0.82rem;
+  color: rgba(62, 39, 35, 0.7);
+  line-height: 1.5;
+}
+
+.product-card__variant strong {
+  color: var(--color-terracotta);
+  font-weight: 600;
+}
+
 /* ============================================================
    ABOUT
    ============================================================ */
