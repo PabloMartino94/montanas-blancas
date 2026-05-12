@@ -244,10 +244,19 @@ button {
   transition: all var(--transition-base);
 }
 
-.navbar.scrolled {
+/* backdrop-filter va en ::before para no crear un containing block
+   para .navbar__nav (position: fixed), lo que rompería el menú mobile */
+.navbar.scrolled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: rgba(245, 240, 232, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  z-index: -1;
+}
+
+.navbar.scrolled {
   box-shadow: var(--shadow-sm);
 }
 
