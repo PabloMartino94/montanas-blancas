@@ -33,10 +33,14 @@
   <meta name="geo.region" content="AR-M" />
   <meta name="geo.placename" content="Mendoza" />
 
-  <!-- Fonts -->
+  <!-- Fonts: async to avoid render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" /></noscript>
+
+  <!-- Preload LCP hero image -->
+  <link rel="preload" as="image" href="images/hero.webp" type="image/webp" />
 
   <!-- Sitemap discovery -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -156,7 +160,7 @@
           <!-- Wax Melts + Caramelera -->
           <article class="product-card animate-on-scroll" data-category="waxmelts" itemscope itemtype="https://schema.org/Product">
             <div class="product-card__image-wrapper">
-              <img src="images/waxmelts-caramelera.jpeg" alt="Wax Melts aromáticos artesanales con caramelera decorativa" class="product-card__image" loading="lazy" itemprop="image" />
+              <img src="images/waxmelts-caramelera.jpeg" alt="Wax Melts aromáticos artesanales con caramelera decorativa" class="product-card__image" loading="lazy" itemprop="image" width="900" height="900" />
               <span class="product-card__badge">Popular</span>
             </div>
             <div class="product-card__body">
@@ -183,7 +187,7 @@
           <!-- Vela Decorativa en Vidrio -->
           <article class="product-card animate-on-scroll" data-category="velas" itemscope itemtype="https://schema.org/Product">
             <div class="product-card__image-wrapper">
-              <img src="images/vela-decorativa-vidrio.jpeg" alt="Vela decorativa artesanal de cera de soja en envase de vidrio con tapa de madera" class="product-card__image" loading="lazy" itemprop="image" />
+              <img src="images/vela-decorativa-vidrio.jpeg" alt="Vela decorativa artesanal de cera de soja en envase de vidrio con tapa de madera" class="product-card__image" loading="lazy" itemprop="image" width="900" height="900" />
               <span class="product-card__badge badge--new">Nuevo</span>
             </div>
             <div class="product-card__body">
@@ -205,7 +209,7 @@
           <!-- Vela Aromatica en Base Artesanal -->
           <article class="product-card animate-on-scroll" data-category="velas" itemscope itemtype="https://schema.org/Product">
             <div class="product-card__image-wrapper">
-              <img src="images/vela-base-cemento.jpeg" alt="Vela aromática artesanal con forma de flor sobre base de cemento y yeso" class="product-card__image" loading="lazy" itemprop="image" />
+              <img src="images/vela-base-cemento.jpeg" alt="Vela aromática artesanal con forma de flor sobre base de cemento y yeso" class="product-card__image" loading="lazy" itemprop="image" width="900" height="900" />
             </div>
             <div class="product-card__body">
               <h3 class="product-card__title" itemprop="name">Vela Aromática Artesanal</h3>
@@ -226,7 +230,7 @@
           <!-- Vela en Contenedor de Vidrio -->
           <article class="product-card animate-on-scroll" data-category="velas" itemscope itemtype="https://schema.org/Product">
             <div class="product-card__image-wrapper">
-              <img src="images/vela-contenedor-vidrio.jpeg" alt="Velas aromáticas celeste y blanco de cera de soja en contenedores de vidrio, colores de la bandera Argentina" class="product-card__image" loading="lazy" itemprop="image" />
+              <img src="images/vela-contenedor-vidrio.jpeg" alt="Velas aromáticas celeste y blanco de cera de soja en contenedores de vidrio, colores de la bandera Argentina" class="product-card__image" loading="lazy" itemprop="image" width="900" height="900" />
               <span class="product-card__badge" style="background: linear-gradient(135deg, #74b9ff, #a29bfe); color: white;">¡Argentina!</span>
             </div>
             <div class="product-card__body">
@@ -248,7 +252,7 @@
           <!-- Vela en Contenedor Artesanal -->
           <article class="product-card animate-on-scroll" data-category="velas" itemscope itemtype="https://schema.org/Product">
             <div class="product-card__image-wrapper">
-              <img src="images/vela-contenedor-cemento.jpeg" alt="Vela aromática en contenedor artesanal de cemento y yeso" class="product-card__image" loading="lazy" itemprop="image" />
+              <img src="images/vela-contenedor-cemento.jpeg" alt="Vela aromática en contenedor artesanal de cemento y yeso" class="product-card__image" loading="lazy" itemprop="image" width="900" height="900" />
             </div>
             <div class="product-card__body">
               <h3 class="product-card__title" itemprop="name">Vela en Contenedor Artesanal</h3>
@@ -274,7 +278,10 @@
     <section id="nosotros" class="about section section--alt" aria-label="Sobre nosotros">
       <div class="container about__grid">
         <div class="about__image-wrapper animate-on-scroll">
-          <img src="images/hero.png" alt="Velas artesanales de Montañas Blancas, Mendoza" class="about__image" loading="lazy" />
+          <picture>
+            <source srcset="images/hero.webp" type="image/webp" />
+            <img src="images/hero.png" alt="Velas artesanales de Montañas Blancas, Mendoza" class="about__image" loading="lazy" width="1024" height="1024" />
+          </picture>
         </div>
         <div class="about__content animate-on-scroll">
           <p class="section__tagline">Nuestra Historia</p>
@@ -378,7 +385,7 @@
 
           <article class="blog-card">
             <div class="blog-card__image-wrapper">
-              <img src="images/vela-portavela-2.png" alt="Portavela artesanal con vela aromática encendida" class="blog-card__image" loading="lazy" />
+              <img src="images/vela-portavela-2.png" alt="Portavela artesanal con vela aromática encendida" class="blog-card__image" loading="lazy" width="640" height="640" />
             </div>
             <div class="blog-card__body">
               <time class="blog-card__date" datetime="2026-04-20">20 de Abril, 2026</time>
@@ -390,7 +397,7 @@
 
           <article class="blog-card">
             <div class="blog-card__image-wrapper">
-              <img src="images/incienso-porta-1.png" alt="Porta incienso artesanal para aromatizar el hogar" class="blog-card__image" loading="lazy" />
+              <img src="images/incienso-porta-1.png" alt="Porta incienso artesanal para aromatizar el hogar" class="blog-card__image" loading="lazy" width="640" height="640" />
             </div>
             <div class="blog-card__body">
               <time class="blog-card__date" datetime="2026-04-10">10 de Abril, 2026</time>
@@ -402,7 +409,7 @@
 
           <article class="blog-card">
             <div class="blog-card__image-wrapper">
-              <img src="images/fosforos.png" alt="Fósforos artesanales junto a velas aromáticas" class="blog-card__image" loading="lazy" />
+              <img src="images/fosforos.png" alt="Fósforos artesanales junto a velas aromáticas" class="blog-card__image" loading="lazy" width="640" height="640" />
             </div>
             <div class="blog-card__body">
               <time class="blog-card__date" datetime="2026-03-28">28 de Marzo, 2026</time>

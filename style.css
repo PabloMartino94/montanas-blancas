@@ -386,9 +386,12 @@ button {
   align-items: center;
   justify-content: center;
   background-image: url('images/hero.png');
+  background-image: image-set(
+    url('images/hero.webp') type('image/webp'),
+    url('images/hero.png') type('image/png')
+  );
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
 }
 
 .hero__overlay {
@@ -1189,18 +1192,19 @@ button {
   color: var(--color-white);
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
   z-index: 900;
-  transition: all var(--transition-base);
+  transition: box-shadow var(--transition-base);
   animation: whatsappPulse 2s ease-in-out infinite;
 }
 
 .whatsapp-float:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+  animation-play-state: paused;
 }
 
 @keyframes whatsappPulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-  50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
 }
 
 /* ============================================================
@@ -1312,10 +1316,6 @@ button {
   .navbar__link {
     color: var(--color-dark-brown);
     font-size: 1.2rem;
-  }
-
-  .hero {
-    background-attachment: scroll;
   }
 
   .hero__title {
