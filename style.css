@@ -1128,6 +1128,51 @@ button {
 }
 
 /* ============================================================
+   BACK TO TOP
+   ============================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: calc(var(--space-xl) + 72px);
+  right: var(--space-xl);
+  width: 44px;
+  height: 44px;
+  background: var(--color-dark-brown);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  z-index: 899;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity var(--transition-base), transform var(--transition-base), background var(--transition-fast);
+  cursor: pointer;
+  border: none;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.back-to-top:hover {
+  background: var(--color-terracotta);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: calc(var(--space-lg) + 64px);
+    right: var(--space-lg);
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ============================================================
    WHATSAPP FLOAT
    ============================================================ */
 .whatsapp-float {
@@ -1333,6 +1378,15 @@ button {
   .catalog__filter {
     font-size: 0.8rem;
     padding: 0.5rem 1rem;
+  }
+
+  .contact__whatsapp-card {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .contact__whatsapp-card .btn--large {
+    width: 100%;
+    white-space: normal;
   }
 }
 

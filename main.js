@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTestimonialsCarousel();
   initScrollAnimations();
   initActiveNavLink();
+  initBackToTop();
 });
 
 /* ============================================================
@@ -220,6 +221,22 @@ function initScrollAnimations() {
 
   document.querySelectorAll('.animate-on-scroll').forEach(el => {
     observer.observe(el);
+  });
+}
+
+/* ============================================================
+   BACK TO TOP — Show after scrolling 400px, smooth scroll up
+   ============================================================ */
+function initBackToTop() {
+  const btn = document.getElementById('back-to-top');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
