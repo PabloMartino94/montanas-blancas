@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initActiveNavLink();
   initBackToTop();
+  initAnalytics();
 });
 
 /* ============================================================
@@ -238,6 +239,100 @@ function initBackToTop() {
   btn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+}
+
+/* ============================================================
+   GA4 ANALYTICS TRACKING
+   ============================================================ */
+function initAnalytics() {
+  if (typeof gtag === 'undefined') return;
+  trackWhatsAppClicks();
+  trackProductViews();
+  trackCatalogFilters();
+  trackFAQOpens();
+  trackBlogReads();
+}
+
+function trackWhatsAppClicks() {
+  document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+    link.addEventListener('click', () => {
+      let productName = '';
+      let source = 'other';
+
+      if (link.classList.contains('whatsapp-float')) {
+        source = 'float_button';
+      } else if (link.id === 'contact-whatsapp') {
+        source = 'contact_section';
+      } else if (link.closest('.product-card')) {
+        productName = link.closest('.product-card').querySelector('.product-card__title')?.textContent.trim() || '';
+        source = 'product_card';
+      } else if (link.closest('.blog-post__cta-section')) {
+        source = 'blog_cta';
+      }
+
+      gtag('event', 'whatsapp_click', {
+        product_name: productName,
+        source,
+        page: window.location.pathname,
+      });
+    });
+  });
+}
+
+function trackProductViews() {
+  const cards = document.querySelectorAll('.product-card');
+  if (!cards.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const name = entry.target.querySelector('.product-card__title')?.textContent.trim();
+        if (name) gtag('event', 'view_item', { item_name: name });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  cards.forEach(card => observer.observe(card));
+}
+
+function trackCatalogFilters() {
+  const labels = { waxmelts: 'Wax Melts', velas: 'Velas', all: 'Todos' };
+
+  document.querySelectorAll('.catalog__filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      if (filter !== 'all') {
+        gtag('event', 'catalog_filter', { filter_value: labels[filter] || filter });
+      }
+    });
+  });
+}
+
+function trackFAQOpens() {
+  document.querySelectorAll('.faq__item').forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        const question = item.querySelector('.faq__question span')?.textContent.trim();
+        if (question) gtag('event', 'faq_open', { question });
+      }
+    });
+  });
+}
+
+function trackBlogReads() {
+  const title = document.querySelector('.blog-post__title')?.textContent.trim();
+  if (!title) return;
+
+  let fired = false;
+  window.addEventListener('scroll', () => {
+    if (fired) return;
+    const progress = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+    if (progress >= 0.5) {
+      fired = true;
+      gtag('event', 'blog_read', { blog_title: title });
+    }
+  }, { passive: true });
 }
 
 /* ============================================================
