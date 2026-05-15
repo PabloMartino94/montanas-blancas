@@ -56,12 +56,13 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "Store"],
     "name": "Montañas Blancas",
     "description": "Velas aromáticas artesanales y wax melts de cera de soja natural. Hechos a mano en Mendoza, Argentina.",
     "url": "https://www.montañasblancas.com",
-    "image": "/images/hero.png",
+    "image": "https://www.montañasblancas.com/images/hero.png",
     "telephone": "+5492616534503",
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Mendoza",
@@ -73,6 +74,80 @@
       { "@type": "City", "name": "Ciudad de Mendoza" },
       { "@type": "City", "name": "Guaymallén" },
       { "@type": "City", "name": "Luján de Cuyo" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Velas y Wax Melts Artesanales",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Wax Melts de cera de soja", "description": "Pastillas de cera aromática para hornillo, sin mecha, elaboradas con cera de soja natural" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Vela Aromática Artesanal", "description": "Vela de cera de soja con pábilo de algodón y fragancia natural, hecha a mano en Mendoza" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Vela en Contenedor Artesanal", "description": "Vela artesanal en contenedor de cemento o vidrio, diseño decorativo único" } }
+      ]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "telephone": "+5492616534503",
+      "availableLanguage": "Spanish"
+    },
+    "knowsAbout": ["velas aromáticas artesanales", "wax melts", "cera de soja", "aromaterapia", "decoración del hogar", "regalos artesanales", "velas decorativas Mendoza"]
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿A dónde realizan envíos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Realizamos envíos dentro del Gran Mendoza: Godoy Cruz, Ciudad de Mendoza, Guaymallén y Luján de Cuyo. El costo de envío varía según la zona."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo puedo comprar velas artesanales de Montañas Blancas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Podés hacer tu pedido por WhatsApp. Elegí el producto que te gusta en el catálogo y consultamos disponibilidad y envío directamente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué medios de pago aceptan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aceptamos MercadoPago, transferencia bancaria y efectivo. Coordinamos todo por WhatsApp."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Los productos son aptos para regalo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Todos nuestros productos son ideales para regalar. También podemos armar combos personalizados con velas, wax melts y accesorios."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿De qué están hechas las velas de Montañas Blancas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nuestras velas están hechas con cera de soja 100% natural y pábilo de algodón encerado, con fragancias cuidadosamente seleccionadas para ofrecer aromas envolventes y duraderos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué son los Wax Melts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Los wax melts son pequeñas pastillas de cera aromática que se derriten en un hornito o caramelera para liberar su fragancia. No tienen mecha, por lo que son una opción segura y práctica para perfumar ambientes."
+        }
+      }
     ]
   }
   </script>
