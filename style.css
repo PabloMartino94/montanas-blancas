@@ -569,6 +569,62 @@ button {
   color: var(--color-dark-brown);
 }
 
+/* Product image carousel (multiple photos per card) */
+.product-card__carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.product-card__carousel-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform var(--transition-slow);
+}
+
+.product-card__carousel-img.active {
+  opacity: 1;
+}
+
+.product-card:hover .product-card__carousel-img.active {
+  transform: scale(1.05);
+}
+
+.product-card__carousel-dots {
+  position: absolute;
+  bottom: var(--space-sm);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 2;
+}
+
+.product-card__carousel-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.product-card__carousel-dot.active {
+  background: var(--color-white);
+  transform: scale(1.3);
+}
+
+.product-card__badge {
+  z-index: 3;
+}
+
 .product-card__body {
   padding: var(--space-lg);
   display: flex;

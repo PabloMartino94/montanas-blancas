@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initSmoothScroll();
   initCatalogFilters();
+  initProductCarousels();
   initTestimonialsCarousel();
   initScrollAnimations();
   initActiveNavLink();
@@ -115,6 +116,47 @@ function initCatalogFilters() {
         }
       });
     });
+  });
+}
+
+/* ============================================================
+   PRODUCT IMAGE CAROUSEL
+   ============================================================ */
+function initProductCarousels() {
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const imgs = carousel.querySelectorAll('.product-card__carousel-img');
+    const dots = carousel.querySelectorAll('.product-card__carousel-dot');
+    if (imgs.length <= 1) return;
+
+    let current = 0;
+
+    function goTo(index) {
+      imgs[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = index;
+      imgs[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goTo(i);
+    }));
+
+    // Touch swipe
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    carousel.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 40) {
+        goTo(diff > 0
+          ? (current + 1) % imgs.length
+          : (current - 1 + imgs.length) % imgs.length);
+      }
+    }, { passive: true });
   });
 }
 
