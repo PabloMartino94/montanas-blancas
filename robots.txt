@@ -25,4 +25,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://www.montañasblancas.com/sitemap.xml
+Sitemap: https://www.xn--montaasblancas-unb.com/sitemap.xml
