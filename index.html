@@ -172,13 +172,14 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1706411996933012');
     fbq('track', 'PageView');
+    fbq('track', 'ViewContent');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1706411996933012&ev=PageView&noscript=1"
-  /></noscript>
   <!-- End Meta Pixel Code -->
 </head>
 <body>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1706411996933012&ev=PageView&noscript=1"
+  /></noscript>
 
   <!-- ========== NAVBAR ========== -->
   <header id="navbar" class="navbar" role="banner">
@@ -775,5 +776,18 @@
   </a>
 
   <script src="main.js"></script>
+  <!-- Meta Pixel WhatsApp Tracking -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var waLinks = document.querySelectorAll('a[href*="wa.me"]');
+      waLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (typeof fbq === 'function') {
+            fbq('track', 'Contact');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
